@@ -10442,3 +10442,87 @@ header.main-header.header-gold{
 .about-content button:hover {
     text-decoration: underline;
 }
+
+/* ===== FORCE CENTER CAREER FORM (OVERRIDES THEME) ===== */
+
+.career-form-center {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+}
+.contact-us-form small.text-muted {
+    color: #ffffff !important;
+}
+/* ===== PERFECTLY CENTER FILE INPUT BUTTON ===== */
+
+.file-input-perfect {
+    width: 100% !important;
+    height: 52px !important;                 /* EXACT same as other fields */
+    background-color: #2f4f4f !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 10px !important;
+
+    padding: 0 14px !important;
+    box-sizing: border-box !important;
+
+    display: flex !important;
+    align-items: center !important;          /* vertical center */
+}
+
+/* Chrome / Edge / Safari */
+.file-input-perfect::-webkit-file-upload-button {
+    height: 36px !important;                 /* fixed height */
+    line-height: 36px !important;            /* centers text vertically */
+    margin: 8px 2px 0 0 !important;
+
+    background-color: #f9bf2c !important;
+    color: #000 !important;
+    border: none !important;
+    border-radius: 8px !important;
+
+    padding: 0 16px !important;
+    cursor: pointer !important;
+}
+
+/* Firefox */
+.file-input-perfect::file-selector-button {
+    height: 36px !important;
+    line-height: 36px !important;
+    margin-right: 14px !important;
+
+    background-color: #f9bf2c !important;
+    color: #000 !important;
+    border: none !important;
+    border-radius: 8px !important;
+
+    padding: 0 16px !important;
+    cursor: pointer !important;
+}
+
+/* Upload helper text */
+.upload-text {
+    color: #ffffff !important;
+    font-size: 14px;
+    margin-top: 6px;
+    display: block;
+}
+/* Fix dropdown text visibility */
+.form-control option {
+    color: #000;          /* visible text */
+    background-color: #fff;
+}
+
+/* Selected value text */
+.form-control {
+    color: #fff;          /* keeps field text white */
+}
+
+/* Center the form container */
+.contact-form-map {
+    display: flex;
+    justify-content: center;
+}
+
+/* Limit width and keep center */
+
