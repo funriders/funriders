@@ -10526,3 +10526,12 @@ header.main-header.header-gold{
 
 /* Limit width and keep center */
 
+.gallery-text{
+    margin-top: 12px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+    color: #133d3c;
+    width: 100%;
+    display: block;
+}
