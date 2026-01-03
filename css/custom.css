@@ -10535,3 +10535,24 @@ header.main-header.header-gold{
     width: 100%;
     display: block;
 }
+/* to center the cards if there is only one or two cards */
+.center-gallery {
+    justify-content: center;
+}
+/* to center the card if there is one or two cards in a row in the products page */
+.page-gallery .page-gallery-box {
+    justify-content: center;
+}
+.gallery-link {
+        display: block;
+    }
+    .gallery-link * {
+        pointer-events: none;
+    }
+    .gallery-link {
+        pointer-events: auto;
+    }
+	.gallery-card {
+    cursor: pointer;
+}
+
