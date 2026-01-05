@@ -346,3 +346,17 @@ function toggleReadMore() {
     }
 }
 
+function toggleReadMore() {
+    const content = document.querySelector(".read-more-content");
+    const btn = document.querySelector(".read-more-btn");
+
+    if (content.style.display === "block") {
+        content.style.display = "none";
+        btn.textContent = "Read More";
+    } else {
+        content.style.display = "block";
+        btn.textContent = "Read Less";
+    }
+}
+
+
