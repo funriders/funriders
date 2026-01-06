@@ -10576,3 +10576,48 @@ header.main-header.header-gold{
 .gallery-card img {
     border-radius: 24px;
 }
+.pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.pagination {
+    list-style: none;
+    display: flex;
+    gap: 8px;
+    padding: 0;
+}
+
+.pagination li {
+    cursor: pointer;
+}
+
+.pagination li span {
+    display: block;
+    padding: 8px 14px;
+    border: 1px solid #ddd;
+    font-weight: 500;
+}
+
+.pagination li.arrow span {
+    padding: 8px 12px;
+}
+
+.pagination li.active span,
+.pagination li span:hover {
+    background-color: #f4b72a;
+    color: #fff;
+    border-color: #f4b72a;
+}
+
+.pagination li.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination li.disabled span:hover {
+    background-color: transparent;
+    color: inherit;
+    border-color: #ddd;
+}
