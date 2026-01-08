@@ -40,7 +40,9 @@
     </div><br><br>
    <!-- Products Section -->
 <div class="container" style="padding-bottom: 60px;">
-    <div class="row">
+    <div class="row product-row center-gallery">
+
+
         <!-- Card 1 -->
         <div class="col-lg-4 col-md-6 col-12 mb-4 product-item">
             <a href="kaps4046.html" class="card-link">
@@ -650,22 +652,45 @@
                 </div>
             </a>
         </div>
+        <!-- Card 30 -->
+        <div class="col-lg-4 col-md-6 col-12 mb-4 product-item">
+            <a href="kaps4046.html" class="card-link">
+                <div class="photo-gallery wow fadeInUp gallery-card">
+                    <div class="bg-image hover-overlay">
+                        <figure class="image-anime">
+                            <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" class="img-fluid" alt="KAPS 4046">
+                        </figure>
+                        <div class="mask" style="background-color: rgba(251,251,251,0.15);"></div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="gallery-text">KAPS 4046</h5>
+                        <div class="cta-box-body wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="cta-box-btn">
+                                <span class="btn-default">Know More</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
     </div> <!-- Close .row div -->
     
     <!-- Pagination - Now properly outside the .row -->
-    <div class="pagination-wrapper">
+  <div class="pagination-wrapper">
+    <div class="about-us-btn wow fadeInUp" data-wow-delay="0.8s">
         <ul class="pagination" id="pagination">
             <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                <a class="page-link" href="#"></a>
             </li>
             <li class="page-item active"><a class="page-link" href="#">1</a></li>
             <li class="page-item"><a class="page-link" href="#">2</a></li>
             <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-            </li>
+            <li class="page-item"><a class="page-link" href="#"></a></li>
         </ul>
     </div>
+</div>
+
+
 </div>
         <!-- About Us Section Start -->
         <div class="about-us">
@@ -1021,91 +1046,104 @@
         <script src="js/function.js"></script>
         <!-- JavaScript -->
         <script src="js/jquery-3.7.1.min.js"></script>
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const ITEMS_PER_PAGE = 9; // 3 cards per row × 3 rows
-                const items = document.querySelectorAll(".product-item");
-                const pagination = document.getElementById("pagination");
+       <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const ITEMS_PER_PAGE = 6;
+    const VISIBLE_PAGES = 2;
+    const items = document.querySelectorAll(".product-item");
+    const pagination = document.getElementById("pagination");
+  const row = document.querySelector(".product-row");
 
-                if (!items.length || !pagination) return;
 
-                const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
-                let currentPage = 1;
+    if (!items.length || !pagination) return;
 
-                function showPage(page) {
-                    currentPage = page;
-                    const startIndex = (page - 1) * ITEMS_PER_PAGE;
-                    const endIndex = startIndex + ITEMS_PER_PAGE;
+    const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
+    let currentPage = 1;
 
-                    items.forEach((item, index) => {
-                        item.style.display = (index >= startIndex && index < endIndex) ? "block" : "none";
-                    });
+    function showPage(page) {
+        currentPage = page;
+        const startIndex = (page - 1) * ITEMS_PER_PAGE;
+        const endIndex = Math.min(startIndex + ITEMS_PER_PAGE, items.length);
 
-                    updatePagination();
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }
+        items.forEach(item => item.style.display = "none");
 
-                function updatePagination() {
-                    let html = '';
+        for (let i = startIndex; i < endIndex; i++) {
+            items[i].style.display = "block";
+        }
 
-                    // Previous button
-                    if (currentPage > 1) {
-                        html += `<li onclick="showPage(${currentPage - 1})"><span>&laquo;</span></li>`;
-                    } else {
-                        html += `<li class="disabled"><span>&laquo;</span></li>`;
-                    }
+        centerGallery();
+        updatePagination();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-                    // Page numbers
-                    const maxVisiblePages = 5;
-                    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-                    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+    function centerGallery() {
+    // Get visible cards
+    const visibleItems = Array.from(items).filter(
+        item => item.style.display === "block"
+    );
 
-                    if (endPage - startPage + 1 < maxVisiblePages) {
-                        startPage = Math.max(1, endPage - maxVisiblePages + 1);
-                    }
+    // Remove previous centering
+    items.forEach(item => item.classList.remove("center-card"));
 
-                    // First page
-                    if (startPage > 1) {
-                        html += `<li onclick="showPage(1)"><span>1</span></li>`;
-                        if (startPage > 2) {
-                            html += `<li class="disabled"><span>...</span></li>`;
-                        }
-                    }
+    // Only apply on LAST PAGE
+    if (currentPage === totalPages && visibleItems.length < 3) {
+        visibleItems.forEach(item => {
+            item.classList.add("center-card");
+        });
+    }
+}
 
-                    // Page numbers
-                    for (let i = startPage; i <= endPage; i++) {
-                        if (i === currentPage) {
-                            html += `<li class="active"><span>${i}</span></li>`;
-                        } else {
-                            html += `<li onclick="showPage(${i})"><span>${i}</span></li>`;
-                        }
-                    }
 
-                    // Last page
-                    if (endPage < totalPages) {
-                        if (endPage < totalPages - 1) {
-                            html += `<li class="disabled"><span>...</span></li>`;
-                        }
-                        html += `<li onclick="showPage(${totalPages})"><span>${totalPages}</span></li>`;
-                    }
 
-                    // Next button
-                    if (currentPage < totalPages) {
-                        html += `<li onclick="showPage(${currentPage + 1})"><span>&raquo;</span></li>`;
-                    } else {
-                        html += `<li class="disabled"><span>&raquo;</span></li>`;
-                    }
+    function updatePagination() {
+        let html = '';
 
-                    pagination.innerHTML = html;
-                }
+        if (currentPage > 1) {
+            html += `
+                <li class="page-item">
+                    <a class="page-link" href="javascript:void(0)" onclick="showPage(${currentPage - 1})">
+                        &lsaquo;
+                    </a>
+                </li>`;
+        } else {
+            html += `
+                <li class="page-item disabled">
+                    <span class="page-link">&lsaquo;</span>
+                </li>`;
+        }
 
-                // Make showPage globally accessible
-                window.showPage = showPage;
+        let startPage = Math.max(1, currentPage - 1);
+        let endPage = Math.min(totalPages, startPage + VISIBLE_PAGES - 1);
 
-                // Initialize
-                showPage(1);
-            });
-        </script>
+        for (let i = startPage; i <= endPage; i++) {
+            html += i === currentPage
+                ? `<li class="page-item active"><span class="page-link">${i}</span></li>`
+                : `<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="showPage(${i})">${i}</a></li>`;
+        }
+
+        if (currentPage < totalPages) {
+            html += `
+                <li class="page-item">
+                    <a class="page-link" href="javascript:void(0)" onclick="showPage(${currentPage + 1})">
+                        &rsaquo;
+                    </a>
+                </li>`;
+        } else {
+            html += `
+                <li class="page-item disabled">
+                    <span class="page-link">&rsaquo;</span>
+                </li>`;
+        }
+
+        pagination.innerHTML = html;
+    }
+
+    window.showPage = showPage;
+
+    showPage(1);
+});
+</script>
+
 </body>
 
 </html>

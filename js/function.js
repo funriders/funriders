@@ -360,107 +360,107 @@ function toggleReadMore() {
 }
  
         // Pagination functionality
-        window.addEventListener("load", function () {
-            const ITEMS_PER_PAGE = 9;
-            const items = document.querySelectorAll(".product-item");
-            const pagination = document.getElementById("pagination");
+        // window.addEventListener("load", function () {
+        //     const ITEMS_PER_PAGE = 9;
+        //     const items = document.querySelectorAll(".product-item");
+        //     const pagination = document.getElementById("pagination");
 
-            if (!items.length || !pagination) return;
+        //     if (!items.length || !pagination) return;
 
-            const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
-            let currentPage = 1;
+        //     const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
+        //     let currentPage = 1;
 
-            function showPage(page) {
-                currentPage = page;
-                const startIndex = (page - 1) * ITEMS_PER_PAGE;
-                const endIndex = startIndex + ITEMS_PER_PAGE;
+        //     function showPage(page) {
+        //         currentPage = page;
+        //         const startIndex = (page - 1) * ITEMS_PER_PAGE;
+        //         const endIndex = startIndex + ITEMS_PER_PAGE;
 
-                items.forEach((item, index) => {
-                    if (index >= startIndex && index < endIndex) {
-                        item.style.display = "block";
-                        // Trigger wow.js animation for visible items
-                        if (typeof WOW !== 'undefined') {
-                            new WOW().init();
-                        }
-                    } else {
-                        item.style.display = "none";
-                    }
-                });
+        //         items.forEach((item, index) => {
+        //             if (index >= startIndex && index < endIndex) {
+        //                 item.style.display = "block";
+        //                 // Trigger wow.js animation for visible items
+        //                 if (typeof WOW !== 'undefined') {
+        //                     new WOW().init();
+        //                 }
+        //             } else {
+        //                 item.style.display = "none";
+        //             }
+        //         });
 
-                updatePagination();
+        //         updatePagination();
                 
-                // Scroll to top of products section when changing pages
-                const productsSection = document.querySelector('.container');
-                if (productsSection) {
-                    window.scrollTo({
-                        top: productsSection.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                }
-            }
+        //         // Scroll to top of products section when changing pages
+        //         const productsSection = document.querySelector('.container');
+        //         if (productsSection) {
+        //             window.scrollTo({
+        //                 top: productsSection.offsetTop - 100,
+        //                 behavior: 'smooth'
+        //             });
+        //         }
+        //     }
 
-            function updatePagination() {
-                let html = '';
+        //     function updatePagination() {
+        //         let html = '';
 
-                // Previous button
-                if (currentPage > 1) {
-                    html += `<li class="page-item"><a class="page-link" href="#" onclick="showPage(${currentPage - 1}); return false;">Previous</a></li>`;
-                } else {
-                    html += `<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a></li>`;
-                }
+        //         // Previous button
+        //         if (currentPage > 1) {
+        //             html += `<li class="page-item"><a class="page-link" href="#" onclick="showPage(${currentPage - 1}); return false;">Previous</a></li>`;
+        //         } else {
+        //             html += `<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a></li>`;
+        //         }
 
-                // Page numbers
-                const maxVisiblePages = 5;
-                let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-                let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+        //         // Page numbers
+        //         const maxVisiblePages = 5;
+        //         let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+        //         let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
 
-                if (endPage - startPage + 1 < maxVisiblePages) {
-                    startPage = Math.max(1, endPage - maxVisiblePages + 1);
-                }
+        //         if (endPage - startPage + 1 < maxVisiblePages) {
+        //             startPage = Math.max(1, endPage - maxVisiblePages + 1);
+        //         }
 
-                if (startPage > 1) {
-                    html += `<li class="page-item"><a class="page-link" href="#" onclick="showPage(1); return false;">1</a></li>`;
-                    if (startPage > 2) {
-                        html += `<li class="page-item disabled"><span class="page-link">...</span></li>`;
-                    }
-                }
+        //         if (startPage > 1) {
+        //             html += `<li class="page-item"><a class="page-link" href="#" onclick="showPage(1); return false;">1</a></li>`;
+        //             if (startPage > 2) {
+        //                 html += `<li class="page-item disabled"><span class="page-link">...</span></li>`;
+        //             }
+        //         }
 
-                for (let i = startPage; i <= endPage; i++) {
-                    if (i === currentPage) {
-                        html += `<li class="page-item active"><a class="page-link" href="#">${i}</a></li>`;
-                    } else {
-                        html += `<li class="page-item"><a class="page-link" href="#" onclick="showPage(${i}); return false;">${i}</a></li>`;
-                    }
-                }
+        //         for (let i = startPage; i <= endPage; i++) {
+        //             if (i === currentPage) {
+        //                 html += `<li class="page-item active"><a class="page-link" href="#">${i}</a></li>`;
+        //             } else {
+        //                 html += `<li class="page-item"><a class="page-link" href="#" onclick="showPage(${i}); return false;">${i}</a></li>`;
+        //             }
+        //         }
 
-                if (endPage < totalPages) {
-                    if (endPage < totalPages - 1) {
-                        html += `<li class="page-item disabled"><span class="page-link">...</span></li>`;
-                    }
-                    html += `<li class="page-item"><a class="page-link" href="#" onclick="showPage(${totalPages}); return false;">${totalPages}</a></li>`;
-                }
+        //         if (endPage < totalPages) {
+        //             if (endPage < totalPages - 1) {
+        //                 html += `<li class="page-item disabled"><span class="page-link">...</span></li>`;
+        //             }
+        //             html += `<li class="page-item"><a class="page-link" href="#" onclick="showPage(${totalPages}); return false;">${totalPages}</a></li>`;
+        //         }
 
-                // Next button
-                if (currentPage < totalPages) {
-                    html += `<li class="page-item"><a class="page-link" href="#" onclick="showPage(${currentPage + 1}); return false;">Next</a></li>`;
-                } else {
-                    html += `<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a></li>`;
-                }
+        //         // Next button
+        //         if (currentPage < totalPages) {
+        //             html += `<li class="page-item"><a class="page-link" href="#" onclick="showPage(${currentPage + 1}); return false;">Next</a></li>`;
+        //         } else {
+        //             html += `<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a></li>`;
+        //         }
 
-                pagination.innerHTML = html;
-            }
+        //         pagination.innerHTML = html;
+        //     }
 
-            // Make showPage function globally accessible
-            window.showPage = showPage;
+        //     // Make showPage function globally accessible
+        //     window.showPage = showPage;
             
-            // Initialize first page
-            showPage(1);
+        //     // Initialize first page
+        //     showPage(1);
             
-            // Initialize wow.js animations
-            if (typeof WOW !== 'undefined') {
-                new WOW().init();
-            }
-        });
+        //     // Initialize wow.js animations
+        //     if (typeof WOW !== 'undefined') {
+        //         new WOW().init();
+        //     }
+        // });
         
         // Read More functionality for about section
         function toggleReadMore() {

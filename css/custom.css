@@ -10546,6 +10546,15 @@ header.main-header.header-gold{
 .page-gallery .page-gallery-box {
     justify-content: center;
 }
+/* Center the gallery when there are 1 or 2 cards in the last row */
+.center-gallery {
+    justify-content: center !important;
+}
+
+/* Default alignment (for 3 or more cards in a row) */
+.row:not(.center-gallery) {
+    justify-content: flex-start;
+}
 .gallery-link {
         display: block;
     }
@@ -10639,3 +10648,58 @@ li a:focus {
 }
 
 .product-item { display: none; }
+/* Make pagination links look like Know More button */
+.pagination .page-link {
+    display: inline-block;
+    background: var(--accent-color);   /* same yellow */
+    color: var(--primary-color);        /* same text color */
+    padding: 8px 20px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.2;
+    text-transform: capitalize;
+    border: none;
+    transition: all 0.4s ease-in-out;
+}
+
+/* Hover effect – same as Know More */
+.pagination .page-link:hover {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+/* Active page */
+.pagination .page-item.active .page-link {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+/* Disabled state */
+.pagination .page-item.disabled .page-link {
+    background: #eee;
+    color: #999;
+    cursor: not-allowed;
+}
+.product-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-row.center-gallery {
+    justify-content: center;
+}
+/* Center last page cards */
+.product-row.center-gallery {
+    justify-content: center !important;
+}
+
+/* Allow columns to shrink and center */
+.product-row.center-gallery .product-item {
+    flex: 0 0 auto;
+}
+/* Center cards individually on last page */
+.product-item.center-card {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
